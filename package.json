@@ -1,0 +1,51 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "license": "",
+  "description": "",
+  "keywords": [],
+  "main": "typeScript/config/config.js",
+  "scripts": {
+    "init": "npm i && node node_modules/protractor/bin/webdriver-manager update",
+    "build": "tsc",
+    "clean": "rimraf typeScript/ && rimraf reports/html/* && rimraf reports/json/*",
+    "clean-build": "npm run clean && npm run build",
+    "test": "npm run clean && npm run build && protractor typeScript/config/config.js --params.timeout=80000"
+  },
+  "author": "Hari Gowtham",
+  "devDependencies": {
+    "@types/cucumber": "^4.0.4",
+    "@types/node": "^9.6.12",
+    "@types/selenium-webdriver": "^3.0.8",
+    "all-contributors-cli": "^5.2.0",
+    "bluebird": "^3.5.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "cucumber": "^4.1.0",
+    "cucumber-html-reporter": "^4.0.2",
+    "encryptjs": "^2.0.0",
+    "grunt": "^1.0.3",
+    "grunt-cli": "^1.2.0",
+    "grunt-concurrent": "^2.2.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-exec": "^3.0.0",
+    "grunt-protractor-runner": "^5.0.0",
+    "load-grunt-tasks": "^3.4.1",
+    "mkdirp": "^0.5.1",
+    "protractor": "^5.3.1",
+    "protractor-cucumber-framework": "^5.0.0",
+    "protractor-multiple-cucumber-html-reporter-plugin": "^1.8.0",
+    "rimraf": "^2.6.2",
+    "shelljs": "^0.8.3",
+    "ts-node": "^6.0.0",
+    "typescript": "^2.9.2",
+    "webdriver-manager": "^13.0.0"
+  },
+  "dependencies": {
+    "chai-http": "^4.3.0",
+    "file-system": "^2.2.2",
+    "load-json-file": "^5.3.0",
+    "npm": "^6.9.0",
+    "write-json-file": "^3.2.0"
+  }
+}
