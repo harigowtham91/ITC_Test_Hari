@@ -30,6 +30,10 @@ export class Register_pg {
     public phone: ElementFinder;
     public alise: ElementFinder;
     public register_button: ElementFinder;
+    public emailid: ElementFinder;
+    public pass: ElementFinder;
+    public login: ElementFinder;
+    public myaccountText: ElementFinder;
 
     constructor() {
         this.sign_in_but = element(by.linkText("Sign in"))
@@ -39,12 +43,15 @@ export class Register_pg {
         this.first_name = element(by.id("customer_firstname"))
         this.Last_name = element(by.id("customer_lastname"))
         this.passwd = element(by.id("passwd"))
-        this.date_day = element(by.css('select[name="days"]'))
-        this.date_day_val = element(by.id("days")).element(by.cssContainingText('option', 'regexp:25\s+'))
-        this.date_mon = element(by.id("months"))
-        this.date_mon_val = element(by.id("months")).element(by.cssContainingText('option', 'regexp:March\s'))
-        this.date_year = element(by.id("years"))
-        this.date_year_val = element(by.id("years")).element(by.cssContainingText('option', 'regexp:1991\s+'))
+        this.date_day = element(by.id("uniform-days"));
+        this.date_day_val = element(by.css("#days > option:nth-child(2)"));
+        // this.date_day_val = element(by.id("days")).element(by.cssContainingText('option', 'regexp:25\s+'))
+        this.date_mon = element(by.id("uniform-months"));
+        this.date_mon_val = element(by.css("#months > option:nth-child(3)"));
+        // this.date_mon_val = element(by.id("months")).element(by.cssContainingText('option', 'regexp:March\s'))
+        this.date_year = element(by.id("uniform-years"));
+        this.date_year_val = element(by.css("#years > option:nth-child(3)"));
+        // this.date_year_val = element(by.id("years")).element(by.cssContainingText('option', 'regexp:1991\s+'))
         this.address1 = element(by.id("address1"))
         this.city = element(by.id("city"))
         this.state = element(by.id("id_state"))
@@ -53,5 +60,11 @@ export class Register_pg {
         this.phone = element(by.id("phone_mobile"))
         this.alise = element(by.id("alias"))
         this.register_button = element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='DNI / NIF / NIE'])[1]/following::span[1]"))
+
+        //pages for sign
+        this.emailid=element(by.id("email"))
+        this.pass=element(by.id("passwd"))
+        this.login=element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Forgot your password?'])[1]/following::span[1]"))
+        this.myaccountText= element(by.xpath(".//*[normalize-space(text()) and normalize-space(.)='My account'])[1]/following::h1[1])"))
     }
 }
