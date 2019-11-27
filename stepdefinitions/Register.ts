@@ -37,10 +37,11 @@ Given(/^Create a new user (.+)$/, { timeout: 250000 }, async (email) => {
 });
 
 Given(/^Login with creted user (.+)$/, { timeout: 250000 }, async (email) => {
+  await reg_pg.sigout.click();
+  await browser.sleep(3000);
   await reg_pg.sign_in_but.click()
   await supportobj.waitForElement(reg_pg.emailText, true);
   await reg_pg.emailid.sendKeys(email);
-  await reg_pg.pass.sendKeys(email);
+  await reg_pg.pass.sendKeys("Password");
   await reg_pg.login.click();
-
 });

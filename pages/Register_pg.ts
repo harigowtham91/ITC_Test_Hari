@@ -34,6 +34,7 @@ export class Register_pg {
     public pass: ElementFinder;
     public login: ElementFinder;
     public myaccountText: ElementFinder;
+    public sigout: ElementFinder;
 
     constructor() {
         this.sign_in_but = element(by.linkText("Sign in"))
@@ -66,5 +67,6 @@ export class Register_pg {
         this.pass=element(by.id("passwd"))
         this.login=element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Forgot your password?'])[1]/following::span[1]"))
         this.myaccountText= element(by.xpath(".//*[normalize-space(text()) and normalize-space(.)='My account'])[1]/following::h1[1])"))
+        this.sigout=element(by.linkText("Sign out"));
     }
 }
