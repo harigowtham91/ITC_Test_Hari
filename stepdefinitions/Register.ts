@@ -1,9 +1,12 @@
-import { browser, protractor } from "protractor";
+import { browser, protractor, element, by } from "protractor";
 const { Given } = require("cucumber");
 import { commonfunction } from "../support/commonfunction";
 import { Register_pg } from "../pages/Register_pg";
-const chai = require("chai").use(require("chai-as-promised"));
-// Actions actions = new Actions(driver);
+var chai = require('chai');
+var chaiAsPromised = require('chai-as-promised');
+
+chai.use(chaiAsPromised);
+var expect = chai.expect;
 
 const reg_pg: Register_pg = new Register_pg();
 const supportobj: commonfunction = new commonfunction();
@@ -44,4 +47,36 @@ Given(/^Login with creted user (.+)$/, { timeout: 250000 }, async (email) => {
   await reg_pg.emailid.sendKeys(email);
   await reg_pg.pass.sendKeys("Password");
   await reg_pg.login.click();
+});
+
+Given(/^search the Prodect (.+)$/, { timeout: 250000 }, async (name) => {
+  await element(by.id("search_query_top")).click();
+  await element(by.id("search_query_top")).sendKeys('Faded Short Sleeve T-shirts');
+  await element(by.name("submit_search")).click();
+  browser.sleep(3000);
+  var text = await element(by.xpath("//div[@id='center_column']/ul/li/div/div[2]/h5/a")).getText()
+  expect(text).to.equal(name);
+  console.log(text)
+});
+Given(/^Add to cart$/, { timeout: 250000 }, async () => {
+  // await browser.get('http://automationpractice.com/index.php?controller=search&orderby=position&orderway=desc&search_query=Faded+Short+Sleeve+T-shirts&submit_search=');
+  // browser.actions().mouseMove(element(by.css("span.price.product-price"))).perform()
+  await element(by.xpath("//div[@id='center_column']/ul/li/div/div[2]/h5/a")).click()
+  browser.sleep(3000);
+  await element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='S'])[1]/following::span[1]")).click();
+  browser.sleep(3000);
+  var ele = element(by.css("a.btn.btn-default.button.button-medium > span"));
+  await supportobj.waitForElement(ele, true)
+  await ele.click();
+});
+Given(/^Check out$/, { timeout: 250000 }, async () => {
+  // await browser.get('http://automationpractice.com/index.php?controller=order');
+  await element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='United States'])[2]/following::span[2]")).click();
+  browser.sleep(2000)
+  await element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='If you would like to add a comment about your order, please write it in the field below.'])[1]/following::span[1]")).click();
+  browser.sleep(2000)
+  await element(by.id("cgv")).click();
+  browser.sleep(2000)
+  await element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='(Read the Terms of Service)'])[1]/following::span[1]")).click();
+  
 });

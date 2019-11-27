@@ -4,10 +4,10 @@ Feature: Register User
         Given Create a new user <name>
         Examples:
             | name                |
-            | test007@test007.com |
+            | test015@test008.com |
     @now
     Scenario Outline: Login
         Given Login with creted user <name>
         Examples:
             | name                |
-            | test007@test007.com |
+            | test015@test008.com |
