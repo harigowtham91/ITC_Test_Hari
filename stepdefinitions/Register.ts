@@ -40,8 +40,8 @@ Given(/^Create a new user (.+)$/, { timeout: 250000 }, async (email) => {
 });
 
 Given(/^Login with creted user (.+)$/, { timeout: 250000 }, async (email) => {
-  await reg_pg.sigout.click();
-  await browser.sleep(3000);
+  // await reg_pg.sigout.click();
+  // await browser.sleep(3000);
   await reg_pg.sign_in_but.click()
   await supportobj.waitForElement(reg_pg.emailText, true);
   await reg_pg.emailid.sendKeys(email);
@@ -78,5 +78,15 @@ Given(/^Check out$/, { timeout: 250000 }, async () => {
   await element(by.id("cgv")).click();
   browser.sleep(2000)
   await element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='(Read the Terms of Service)'])[1]/following::span[1]")).click();
-  
+
+});
+
+
+Given(/^payment the order$/, { timeout: 250000 }, async () => {
+  await browser.sleep(2000)
+  await element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='$16.51'])[6]/following::span[1]")).click();
+  await browser.sleep(1000)
+  await element(by.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Dollar'])[1]/following::span[1]")).click();
+  await browser.sleep(1000)
+  await element(by.xpath("//img[@alt='My Store']")).click();
 });

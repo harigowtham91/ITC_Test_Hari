@@ -11,3 +11,6 @@ Feature: Function
     @now
     Scenario: Check out prodect
         Given Check out
+    @now
+    Scenario: Place the Order
+        Given payment the order
